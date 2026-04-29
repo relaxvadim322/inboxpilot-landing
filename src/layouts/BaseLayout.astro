@@ -1,0 +1,43 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/utilities.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'InboxPilot — AI-ассистент для входящих заявок за 7 дней',
+  description = 'Настроим AI-ассистента для входящих заявок за 7 дней: быстрый первый ответ, сбор данных клиента и передача горячих обращений в Telegram, таблицу или CRM.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: preconnect hints (actual @import is in global.css) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <slot />
+
+</body>
+</html>

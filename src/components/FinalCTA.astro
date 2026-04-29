@@ -1,0 +1,94 @@
+---
+---
+
+<section id="final-cta" class="section final-cta-section">
+  <div class="final-cta-glow" aria-hidden="true"></div>
+  <div class="container final-cta-inner">
+    <h2 class="final-cta-h2 anim">
+      Проверьте, сколько заявок сейчас теряется в&nbsp;переписках
+    </h2>
+
+    <p class="final-cta-text anim">
+      Пришлите 10–20 типичных сообщений от клиентов. Мы покажем, какие вопросы можно закрыть автоматически, где стоит передавать диалог человеку и какой сценарий подойдёт вашему бизнесу.
+    </p>
+
+    <div class="anim">
+      <a
+        href="https://t.me/inboxpilot_demo"
+        class="btn btn-primary btn-lg final-cta-btn"
+        target="_blank"
+        rel="noopener"
+      >
+        Получить разбор входящих заявок
+      </a>
+    </div>
+
+    <p class="final-cta-secondary anim">
+      Ответим в Telegram и предложим простой план запуска без лишней технической сложности.
+    </p>
+  </div>
+</section>
+
+<style>
+  .final-cta-section {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .final-cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(79, 140, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .final-cta-h2 {
+    font-size: var(--text-h2);
+    max-width: 600px;
+    line-height: 1.2;
+  }
+
+  .final-cta-text {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.65;
+  }
+
+  .final-cta-btn {
+    min-width: 320px;
+    max-width: 100%;
+  }
+
+  .final-cta-secondary {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    opacity: 0.7;
+    max-width: 420px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 480px) {
+    .final-cta-btn {
+      min-width: 0;
+      width: 100%;
+    }
+  }
+</style>

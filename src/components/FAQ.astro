@@ -1,0 +1,136 @@
+---
+const faqs = [
+  {
+    q: 'AI будет сам продавать клиентам?',
+    a: 'Нет. Его задача — быстро ответить, собрать данные и передать заявку. Продажа, консультация и финальные решения остаются за человеком.',
+  },
+  {
+    q: 'Что если AI ответит неправильно?',
+    a: 'Мы заранее задаём ограничения, тестируем типовые ситуации и прописываем сценарии, где ассистент должен остановиться и передать диалог человеку.',
+  },
+  {
+    q: 'Можно подключить Telegram?',
+    a: 'Да. Для первого запуска Telegram часто самый простой канал: туда можно передавать заявки, уведомления и краткую информацию по клиенту.',
+  },
+  {
+    q: 'Нужна ли CRM?',
+    a: 'Не обязательно. На старте можно использовать Telegram, Google Sheets или простую форму. CRM имеет смысл подключать позже, когда процесс уже понятен.',
+  },
+  {
+    q: 'Сколько времени занимает запуск?',
+    a: 'Базовый запуск занимает 7 дней. Если нужны сложные интеграции, несколько каналов или нестандартные сценарии, сроки обсуждаются отдельно.',
+  },
+  {
+    q: 'Это подойдёт для медицинских или юридических услуг?',
+    a: 'Да, но с ограничениями. AI может отвечать на организационные вопросы и собирать вводные, но не должен давать диагнозы, заключения или юридические решения.',
+  },
+  {
+    q: 'Можно ли потом улучшать ассистента?',
+    a: 'Да. Лучший вариант — запустить базовую версию, собрать реальные диалоги и улучшить ответы после первых 50–100 обращений.',
+  },
+  {
+    q: 'Что нужно от нас для старта?',
+    a: 'Нужно показать типичные переписки, список услуг, цены или диапазоны цен, условия работы, график, ограничения и контакты для передачи заявок.',
+  },
+  {
+    q: 'Это будет выглядеть как обычный тупой бот?',
+    a: 'Нет. Мы не делаем длинное меню с кнопками ради кнопок. Сценарий строится вокруг нормального диалога, частых вопросов и понятной передачи заявки.',
+  },
+  {
+    q: 'Можно начать с одного канала?',
+    a: 'Да. Это даже лучше. Сначала запускаем один понятный канал, проверяем механику, а потом расширяем систему.',
+  },
+];
+---
+
+<section id="faq" class="section section--surface">
+  <div class="container">
+    <div class="section-header anim">
+      <h2>Частые вопросы</h2>
+    </div>
+
+    <div class="faq-list anim" aria-label="Вопросы и ответы">
+      {faqs.map(({ q, a }) => (
+        <details class="faq-item">
+          <summary class="faq-q">{q}</summary>
+          <div class="faq-a"><div class="faq-a-inner">{a}</div></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 760px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color var(--t-normal);
+  }
+
+  .faq-item[open] {
+    border-color: var(--border-strong);
+  }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-5);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+    line-height: 1.4;
+    transition: color var(--t-fast);
+  }
+
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q::after {
+    content: '+';
+    flex-shrink: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--accent-blue);
+    transition: transform var(--t-normal);
+    line-height: 1;
+  }
+
+  .faq-item[open] .faq-q::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--t-normal);
+    overflow: hidden;
+  }
+
+  .faq-item[open] .faq-a {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-a-inner {
+    min-height: 0;
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.7;
+    border-top: 1px solid var(--border);
+  }
+</style>

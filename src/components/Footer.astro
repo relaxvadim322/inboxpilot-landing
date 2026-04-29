@@ -1,0 +1,146 @@
+---
+const footerLinks = [
+  { href: '#problem', label: 'Проблема' },
+  { href: '#how-it-works', label: 'Как работает' },
+  { href: '#what-you-get', label: 'Что входит' },
+  { href: '#faq', label: 'FAQ' },
+  { href: '#final-cta', label: 'Получить разбор' },
+];
+---
+
+<footer class="footer">
+  <div class="divider"></div>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo" aria-label="InboxPilot — на главную">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="22" height="22" rx="6" fill="#4F8CFF"/>
+          <path d="M5 8.5C5 7.4 5.9 6.5 7 6.5h8c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-5z" fill="rgba(255,255,255,0.15)"/>
+          <path d="M7.5 10h7M7.5 12.5h4.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <span>InboxPilot</span>
+      </a>
+      <p class="footer-desc">
+        AI-ассистенты для входящих заявок, быстрых ответов и первичной квалификации клиентов.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Навигация в подвале">
+      <ul>
+        {footerLinks.map(({ href, label }) => (
+          <li><a href={href} class="footer-nav-link">{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-contacts">
+      <p class="footer-contacts-title">Контакты</p>
+      <a href="https://t.me/inboxpilot_demo" class="footer-contact-link" target="_blank" rel="noopener">
+        Telegram: @inboxpilot_demo
+      </a>
+      <a href="mailto:hello@inboxpilot.ai" class="footer-contact-link">
+        hello@inboxpilot.ai
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="container footer-legal">
+    <p>
+      Учебный проект. Все данные, кейсы, контакты и цена используются как демонстрационный материал для разработки лендинга.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-top: var(--space-8);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--space-8);
+    padding-block: var(--space-8);
+    align-items: start;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-desc {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 300px;
+    line-height: 1.6;
+  }
+
+  .footer-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-nav-link {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    transition: color var(--t-fast);
+  }
+
+  .footer-nav-link:hover {
+    color: var(--text);
+  }
+
+  .footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-contacts-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .footer-contact-link {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    transition: color var(--t-fast);
+  }
+
+  .footer-contact-link:hover {
+    color: var(--accent-blue);
+  }
+
+  .footer-legal {
+    padding-block: var(--space-5);
+  }
+
+  .footer-legal p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-7);
+    }
+
+    .footer-desc {
+      max-width: 100%;
+    }
+  }
+</style>

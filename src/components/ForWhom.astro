@@ -1,0 +1,181 @@
+---
+const forWhom = [
+  {
+    title: 'Бизнесу с повторяющимися вопросами',
+    text: 'Если клиенты часто спрашивают одно и то же, часть нагрузки можно снять автоматическим сценарием.',
+  },
+  {
+    title: 'Тем, кто получает заявки в мессенджерах',
+    text: 'Telegram, Instagram, формы на сайте, личные сообщения — всё это можно привести к более понятной системе.',
+  },
+  {
+    title: 'Тем, кто хочет начать без сложной CRM',
+    text: 'Для первого запуска не обязательно строить огромную инфраструктуру.',
+  },
+  {
+    title: 'Тем, кто теряет заявки из-за скорости ответа',
+    text: 'Если люди часто пишут, ждут и пропадают — быстрый первый ответ может сильно помочь.',
+  },
+];
+
+const notFor = [
+  {
+    title: '2–3 обращения в месяц',
+    text: 'Тогда проще отвечать вручную и не усложнять процесс.',
+  },
+  {
+    title: 'Каждый диалог требует глубокой экспертизы',
+    text: 'AI может собрать вводные, но не должен заменять специалиста в сложных решениях.',
+  },
+  {
+    title: 'Хотите убрать человека из продаж',
+    text: 'InboxPilot — это ассистент, а не замена владельцу, менеджеру или администратору.',
+  },
+  {
+    title: 'Нет понятного оффера',
+    text: 'Сначала нужно привести в порядок услуги, цены, условия и ответы. Иначе AI просто автоматизирует хаос.',
+  },
+];
+---
+
+<section class="section">
+  <div class="container">
+    <div class="section-header anim">
+      <h2>Кому подойдёт InboxPilot</h2>
+    </div>
+
+    <div class="forwhom-grid">
+      <!-- For -->
+      <div class="forwhom-col anim">
+        <div class="forwhom-col-header forwhom-col-header--for">
+          <span class="forwhom-label">Подходит</span>
+        </div>
+        <div class="forwhom-items">
+          {forWhom.map(({ title, text }) => (
+            <div class="forwhom-item forwhom-item--for">
+              <span class="forwhom-icon" aria-hidden="true">✓</span>
+              <div>
+                <p class="forwhom-title">{title}</p>
+                <p class="forwhom-text">{text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Not for -->
+      <div class="forwhom-col anim">
+        <div class="forwhom-col-header forwhom-col-header--not">
+          <span class="forwhom-label forwhom-label--not">Не подходит</span>
+        </div>
+        <div class="forwhom-items">
+          {notFor.map(({ title, text }) => (
+            <div class="forwhom-item forwhom-item--not">
+              <span class="forwhom-icon" aria-hidden="true">✕</span>
+              <div>
+                <p class="forwhom-title">{title}</p>
+                <p class="forwhom-text">{text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .forwhom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+
+  .forwhom-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+
+  .forwhom-col-header {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .forwhom-col-header--for {
+    border-top: 2px solid rgba(34, 197, 94, 0.4);
+  }
+
+  .forwhom-col-header--not {
+    border-top: 2px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .forwhom-label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .forwhom-label--not {
+    color: var(--accent-red);
+  }
+
+  .forwhom-items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forwhom-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .forwhom-item + .forwhom-item {
+    border-top: 1px solid var(--border);
+  }
+
+  .forwhom-icon {
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  .forwhom-item--for .forwhom-icon {
+    color: var(--accent-green);
+  }
+
+  .forwhom-item--not .forwhom-icon {
+    color: var(--accent-red);
+    opacity: 0.7;
+  }
+
+  .forwhom-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .forwhom-text {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .forwhom-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .forwhom-item {
+      padding: var(--space-3) var(--space-4);
+    }
+  }
+</style>

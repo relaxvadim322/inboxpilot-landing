@@ -1,0 +1,116 @@
+---
+const navLinks = [
+  { href: '#problem', label: 'Проблема' },
+  { href: '#how-it-works', label: 'Как работает' },
+  { href: '#what-you-get', label: 'Что входит' },
+  { href: '#cases', label: 'Примеры' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label="InboxPilot — на главную">
+      <span class="logo-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="22" height="22" rx="6" fill="#4F8CFF"/>
+          <path d="M5 8.5C5 7.4 5.9 6.5 7 6.5h8c1.1 0 2 .9 2 2v5c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-5z" fill="rgba(255,255,255,0.15)"/>
+          <path d="M7.5 10h7M7.5 12.5h4.5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="logo-text">InboxPilot</span>
+    </a>
+
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a href={href} class="nav-link">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="#final-cta" class="btn btn-primary header-cta">Разобрать заявки</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13, 17, 23, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .nav {
+    flex: 1;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .nav-link {
+    display: block;
+    padding: 6px 12px;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+    transition: color var(--t-fast), background-color var(--t-fast);
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .header-cta {
+    flex-shrink: 0;
+    padding: 10px 20px;
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      display: none;
+    }
+
+    .header-inner {
+      justify-content: space-between;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .header-cta {
+      display: none;
+    }
+  }
+</style>

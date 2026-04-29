@@ -1,0 +1,169 @@
+---
+const problems = [
+  {
+    num: '01',
+    title: 'Долгий первый ответ',
+    text: 'Человек пишет в момент интереса. Если ответ приходит поздно, заявка быстро остывает.',
+  },
+  {
+    num: '02',
+    title: 'Одни и те же вопросы каждый день',
+    text: 'Цена, сроки, адрес, свободные окна, условия оплаты — администратор повторяет это вручную десятки раз.',
+  },
+  {
+    num: '03',
+    title: 'Нет нормального сбора данных',
+    text: 'Клиент спросил «сколько стоит?», но никто не уточнил задачу, дату, бюджет, контакт и готовность записаться.',
+  },
+  {
+    num: '04',
+    title: 'Переписки разбросаны',
+    text: 'Telegram, Instagram, сайт, личные сообщения — обращения есть, но общей картины нет.',
+  },
+  {
+    num: '05',
+    title: 'Горячие клиенты смешиваются со случайными',
+    text: 'Кто-то просто интересуется, а кто-то готов купить сейчас. Без структуры это сложно быстро увидеть.',
+  },
+  {
+    num: '06',
+    title: 'Владелец не видит, где теряются деньги',
+    text: 'Есть ощущение, что «люди пишут», но непонятно, сколько обращений дошло до заявки, записи или оплаты.',
+  },
+];
+---
+
+<section id="problem" class="section">
+  <div class="container">
+    <div class="problem-editorial">
+
+      <div class="problem-intro">
+        <span class="eyebrow">Где теряются заявки</span>
+        <h2>Заявки теряются не потому, что их мало. А потому что входящие живут в&nbsp;хаосе.</h2>
+        <p class="problem-lead-text">
+          Клиент написал в Telegram. Потом задал вопрос в Instagram. Потом уточнил цену. Потом пропал. Администратор ответил через 3&nbsp;часа, владелец увидел переписку только вечером, а клиент уже записался в другое место.
+        </p>
+        <p class="problem-lead-note">
+          Чаще всего дело не в трафике. Бизнес просто не успевает обработать интерес.
+        </p>
+      </div>
+
+      <div class="audit-panel">
+        {problems.map(({ num, title, text }) => (
+          <div class="audit-row">
+            <span class="audit-chip" aria-hidden="true">{num}</span>
+            <div class="audit-row-content">
+              <h3 class="audit-row-title">{title}</h3>
+              <p class="audit-row-text">{text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .problem-editorial {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-9);
+    align-items: start;
+  }
+
+  .problem-intro {
+    position: sticky;
+    top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .problem-lead-text {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .problem-lead-note {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text);
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  /* ── Audit panel ── */
+  .audit-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .audit-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    transition: background var(--t-fast);
+  }
+
+  .audit-row + .audit-row {
+    border-top: 1px solid var(--border);
+  }
+
+  .audit-row:hover {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .audit-chip {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(79, 140, 255, 0.28);
+    background: rgba(79, 140, 255, 0.07);
+    color: var(--accent-blue);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+
+  .audit-row-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .audit-row-text {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1024px) {
+    .problem-editorial {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .problem-editorial {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .problem-intro {
+      position: static;
+    }
+  }
+</style>
