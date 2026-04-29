@@ -47,6 +47,7 @@
   transition:
     background-color var(--t-fast),
     border-color var(--t-fast),
+    box-shadow var(--t-fast),
     transform var(--t-fast),
     opacity var(--t-fast);
   -webkit-tap-highlight-color: transparent;
@@ -64,6 +65,12 @@
 .btn-primary:hover {
   background-color: var(--accent-blue-hover);
   transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.18);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
 }
 
 .btn-ghost {
