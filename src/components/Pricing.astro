@@ -10,55 +10,124 @@ const includes = [
   'Инструкция для владельца или администратора',
   'План улучшений после запуска',
 ];
+
+const pitch = [
+  'Один понятный запуск — без платформ, кода и интеграторов',
+  'Рабочий ассистент за 7 дней, не за месяц',
+  'Сначала разбираем реальные переписки, потом настраиваем',
+];
 ---
 
-<section class="section section--surface">
+<section class="section section--surface" id="pricing">
   <div class="container">
-    <div class="section-header anim">
-      <h2>Один понятный запуск без лишней архитектуры</h2>
-      <p>
-        На первом этапе не нужно строить сложную платформу. Достаточно настроить рабочий сценарий, который закрывает частые вопросы и передаёт заявки человеку.
-      </p>
-    </div>
+    <div class="pricing-layout">
 
-    <div class="pricing-card card anim">
-      <div class="pricing-header">
-        <div class="pricing-name">Запуск AI-ассистента за 7 дней</div>
-        <div class="pricing-price">
-          <span class="pricing-from">от</span>
-          <span class="pricing-amount">$490</span>
+      <!-- Left: pitch -->
+      <div class="pricing-pitch">
+        <span class="eyebrow">Стоимость</span>
+        <h2 class="pricing-pitch-h2">Один понятный запуск без лишней архитектуры</h2>
+        <p class="pricing-pitch-text">
+          На первом этапе не нужно строить сложную платформу. Достаточно настроить рабочий сценарий, который закрывает частые вопросы и передаёт заявки человеку.
+        </p>
+        <ul class="pitch-checks">
+          {pitch.map((item) => (
+            <li class="pitch-check-item">
+              <span class="pitch-check-icon" aria-hidden="true">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Right: pricing card -->
+      <div class="pricing-card card anim">
+        <div class="pricing-header">
+          <div class="pricing-name">Запуск AI-ассистента за 7 дней</div>
+          <div class="pricing-price">
+            <span class="pricing-from">от</span>
+            <span class="pricing-amount">$490</span>
+          </div>
+        </div>
+
+        <div class="pricing-divider"></div>
+
+        <ul class="pricing-list">
+          {includes.map((item) => (
+            <li class="pricing-item">
+              <span class="pricing-check" aria-hidden="true">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="pricing-divider"></div>
+
+        <div class="pricing-footer">
+          <a href="#final-cta" class="btn btn-primary btn-lg pricing-cta">
+            Получить разбор перед запуском
+          </a>
+          <p class="pricing-note">
+            После разбора станет понятно, достаточно ли простого сценария или вашему бизнесу нужна более сложная интеграция.
+          </p>
         </div>
       </div>
 
-      <div class="pricing-divider"></div>
-
-      <ul class="pricing-list">
-        {includes.map((item) => (
-          <li class="pricing-item">
-            <span class="pricing-check" aria-hidden="true">✓</span>
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div class="pricing-divider"></div>
-
-      <div class="pricing-footer">
-        <a href="#final-cta" class="btn btn-primary btn-lg pricing-cta">
-          Получить разбор перед запуском
-        </a>
-        <p class="pricing-note">
-          После разбора станет понятно, достаточно ли простого сценария или вашему бизнесу нужна более сложная интеграция.
-        </p>
-      </div>
     </div>
   </div>
 </section>
 
 <style>
+  .pricing-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-9);
+    align-items: start;
+  }
+
+  /* ── Pitch column ── */
+  .pricing-pitch {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-top: var(--space-2);
+  }
+
+  .pricing-pitch-h2 {
+    font-size: var(--text-h2);
+    line-height: 1.2;
+  }
+
+  .pricing-pitch-text {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .pitch-checks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .pitch-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .pitch-check-icon {
+    flex-shrink: 0;
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin-top: 1px;
+  }
+
+  /* ── Pricing card ── */
   .pricing-card {
-    max-width: 600px;
-    margin-inline: auto;
     background: var(--bg);
     border-color: var(--border-strong);
     padding: var(--space-7);
@@ -147,6 +216,13 @@ const includes = [
     line-height: 1.6;
     max-width: 420px;
     opacity: 0.75;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-7);
+    }
   }
 
   @media (max-width: 480px) {
