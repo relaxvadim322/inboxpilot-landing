@@ -49,6 +49,16 @@ const metrics = [
     text-align: center;
     flex: 1;
     min-width: 140px;
+    transition: transform 200ms var(--ease-out);
+  }
+
+  .trust-metric:hover {
+    transform: translateY(-1px);
+  }
+
+  .trust-metric:hover .trust-value {
+    color: var(--accent-blue);
+    transition: color 200ms var(--ease-out);
   }
 
   .trust-value {
