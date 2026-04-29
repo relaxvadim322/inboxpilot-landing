@@ -35,7 +35,7 @@ const steps = [
 
 <section id="how-it-works" class="section section--surface">
   <div class="container">
-    <div class="section-header anim">
+    <div class="section-header">
       <h2>Запуск за 7 дней без лишней разработки</h2>
       <p>
         Сначала разбираем реальные сообщения и проектируем сценарий. Только потом настраиваем ассистента. Поэтому система получается не абстрактной, а привязанной к вашему бизнесу.
@@ -44,7 +44,7 @@ const steps = [
 
     <div class="timeline">
       {steps.map(({ day, title, desc, output }, i) => (
-        <div class="timeline-step anim">
+        <div class="timeline-step">
           <div class="timeline-marker">
             <div class="step-num timeline-num" aria-label={`Шаг ${i + 1}`}>{i + 1}</div>
             {i < steps.length - 1 && <div class="timeline-line" aria-hidden="true"></div>}

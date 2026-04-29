@@ -106,9 +106,4 @@ img {
     scroll-behavior: auto !important;
   }
 
-  .anim {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }

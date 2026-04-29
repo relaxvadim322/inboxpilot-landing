@@ -6,7 +6,8 @@
 
 **Тип проекта:** service landing page (статический сайт)  
 **Аудитория:** малый бизнес, который теряет заявки в переписках  
-**Главный CTA:** «Получить разбор входящих заявок»
+**Главный CTA:** «Получить разбор входящих заявок»  
+**Статус:** ✅ Live — https://inboxpilot-landing.pages.dev/
 
 ## Стек
 
@@ -14,6 +15,12 @@
 - **TypeScript** — типизация в компонентах
 - **Clean CSS** — токены + утилиты, никаких CSS-фреймворков
 - **Inter** — единственный шрифт, Google Fonts
+
+## Деплой
+
+Сайт задеплоен на **Cloudflare Pages**: https://inboxpilot-landing.pages.dev/
+
+Деплой автоматический: пуш в `master` → Cloudflare строит и публикует. Конфигурация деплоя в настройках Cloudflare Pages (не в репо).
 
 ## Запуск
 
@@ -65,6 +72,8 @@ npm run build
 | `src/styles/utilities.css` | Переиспользуемые классы (container, section, btn, tag) |
 | `src/layouts/BaseLayout.astro` | HTML-каркас, мета-теги, подключение шрифтов |
 | `src/pages/index.astro` | Точка сборки — порядок секций |
+| `scripts/take-screenshots.mjs` | Делает before/after скриншоты через Playwright |
+| `docs/visual-review/` | Артефакты визуального ревью (before/after по секциям и breakpoints) |
 
 ## Дизайн-токены (tokens.css)
 
@@ -79,18 +88,41 @@ npm run build
 
 ## Design direction
 
-**Dark luxury / SaaS dark** — не «тёмный ради моды», а интерфейсный тёмный с акцентом на читаемость и доверие. Никакой тяжёлой анимации, никаких градиентных взрывов.
+**Dark luxury / SaaS dark** — не «тёмный ради моды», а интерфейсный тёмный с акцентом на читаемость и доверие.
 
 - Строгая иерархия через scale, не через цвет
 - Единственный акцент — синий #4f8cff
 - Карточки с тонкими бордерами и inset-shadow
-- Float-анимация chat-card в Hero — единственная «живая» анимация на странице
+
+## Animation policy
+
+Анимации только через `transform` и `opacity` (compositor-safe). `box-shadow` и `border-color` используются в hover-состояниях, но не анимируются через `@keyframes`.
+
+**Активные анимации:**
+- `floatY` — плавающий chat-card в Hero (7s, amplitude -7px)
+- `breatheGlow` — пульсация декоративных glow-элементов в Hero и FinalCTA (7–9s, opacity 0.72→1)
+- `typingDot` — индикатор печатания в chat-mockup
+
+**Hover-переходы (transition, не keyframes):**
+- `.btn-primary` — translateY(-1px) + box-shadow glow при hover; outline при focus-visible
+- `.trust-metric` — translateY(-1px) + смена цвета value на accent-blue
+- `.process-step` — лёгкое изменение background
+- `.pricing-card` — border-color + box-shadow (без transform)
+
+**Запрещено:**
+- `will-change` — не использовать
+- Scroll reveal / stagger reveal — не возвращаем, `.anim`-классы удалены
+- Анимации через `width`, `height`, `margin`, `padding`
+- Тяжёлые JS-библиотеки (GSAP, Framer Motion и т.п.)
+
+**prefers-reduced-motion:** включён через универсальный селектор в global.css — накрывает все анимации и переходы.
 
 ## Что НЕЛЬЗЯ делать в этом проекте
 
 - ❌ Tailwind, UnoCSS или любой CSS-фреймворк
 - ❌ React, Vue, Svelte — только `.astro` компоненты
-- ❌ Reveal/scroll animations (класс `.anim` есть в разметке, но trigger нет — намеренно)
+- ❌ Scroll reveal / stagger reveal (`.anim`-классы удалены, не возвращать)
+- ❌ `will-change` на анимируемых элементах
 - ❌ Тяжёлый JavaScript (GSAP, Framer Motion и т.п.)
 - ❌ Backend, API-роуты, серверный рендеринг
 - ❌ Изменять порядок секций без обсуждения
@@ -129,15 +161,22 @@ T7. Update CLAUDE.md / README — часть того же коммита
 T8. Commit + PR — Вадим мержит сам
 ```
 
-## Known issues (на момент baseline)
+## История изменений
 
+| PR | Что сделано |
+|----|------------|
+| PR #1 | Visual redesign — полный редизайн секций, дизайн-система, токены, тёмная тема |
+| PR #3 | Animation polish — breatheGlow, hover-переходы, floatY -7px, btn halo |
+| PR #4 | Docs cleanup — CLAUDE.md/README обновлены, `.anim`-классы удалены |
+
+## Known issues (SEO / performance — следующий pass)
+
+- [ ] Нет `og:image` и `og:url` в мета-тегах
+- [ ] Нет `sitemap.xml`
+- [ ] Нет `robots.txt`
+- [ ] Шрифт Inter подключён через `@import` в CSS — медленнее чем `<link rel="preload">`
 - [ ] Тексты не прогонялись через `content-team` + `text-polisher`
-- [ ] Нет `og:url` и `og:image` в мета-тегах
-- [ ] Шрифт подключён через `@import` в CSS (медленнее чем `<link>`)
-- [ ] Нет `sitemap.xml` и `robots.txt`
-- [ ] Нет `favicon.svg` (только ссылка в BaseLayout)
-- [ ] Класс `.anim` используется в разметке, но scroll-trigger не подключён
-- [ ] TrustStrip, Cases — заглушки без реального контента
+- [ ] TrustStrip, Cases — учебные заглушки без реального контента клиента
 
 ## Важные решения
 
@@ -145,3 +184,4 @@ T8. Commit + PR — Вадим мержит сам
 - **Astro без JS** — лендинг должен быть максимально быстрым, интерактивность не нужна
 - **Dark theme only** — light mode не планируется (учебный проект с чётким visual direction)
 - **Нет i18n** — только русский язык
+- **Нет scroll reveal** — `.anim`-классы удалены, scroll-trigger не будет добавляться
