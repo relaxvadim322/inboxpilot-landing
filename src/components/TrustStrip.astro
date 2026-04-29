@@ -1,72 +1,101 @@
 ---
-const items = [
-  {
-    icon: '⚡',
-    title: 'Быстрый первый ответ',
-    text: 'Клиент получает реакцию сразу, а не через несколько часов, когда интерес уже остыл.',
-  },
-  {
-    icon: '🎯',
-    title: 'Сценарий под ваш бизнес',
-    text: 'Ответы, вопросы и ограничения собираются на основе ваших услуг, цен, правил и реальных переписок.',
-  },
-  {
-    icon: '📩',
-    title: 'Передача горячих заявок',
-    text: 'Когда клиент готов записаться, купить или обсудить детали — заявка уходит вам или администратору.',
-  },
-  {
-    icon: '🔒',
-    title: 'Контроль остаётся у человека',
-    text: 'AI не принимает критичные решения сам. В сложных ситуациях он останавливается и передаёт диалог человеку.',
-  },
+const metrics = [
+  { value: '7 дней', label: 'до запуска' },
+  { value: '1 канал', label: 'на старте' },
+  { value: 'Контроль у человека', label: 'AI передаёт сложные диалоги' },
+  { value: 'от $490', label: 'за базовый запуск' },
 ];
 ---
 
-<section class="section section--surface">
+<section class="section section--compact trust-strip-section">
   <div class="container">
-    <p class="trust-lead anim">
-      AI не заменяет вас. Он закрывает рутину до момента, где нужен человек.
-    </p>
-
-    <div class="grid-4 anim-grid">
-      {items.map(({ icon, title, text }) => (
-        <div class="card trust-card anim">
-          <div class="icon-circle" aria-hidden="true">{icon}</div>
-          <h3 class="trust-title">{title}</h3>
-          <p class="trust-text">{text}</p>
-        </div>
+    <div class="trust-strip">
+      {metrics.map(({ value, label }, i) => (
+        <>
+          <div class="trust-metric">
+            <span class="trust-value">{value}</span>
+            <span class="trust-label">{label}</span>
+          </div>
+          {i < metrics.length - 1 && (
+            <div class="trust-sep" aria-hidden="true"></div>
+          )}
+        </>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .trust-lead {
-    text-align: center;
-    font-size: var(--text-lg);
-    font-weight: 500;
-    color: var(--text-muted);
-    max-width: 580px;
-    margin-inline: auto;
-    margin-bottom: var(--space-7);
+  .trust-strip-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
   }
 
-  .trust-card {
+  .trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .trust-metric {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) clamp(var(--space-6), 4vw, var(--space-9));
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
   }
 
-  .trust-title {
-    font-size: var(--text-base);
-    font-weight: 600;
+  .trust-value {
+    font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+    font-weight: 700;
     color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
-  .trust-text {
-    font-size: var(--text-sm);
+  .trust-label {
+    font-size: var(--text-xs);
     color: var(--text-muted);
-    line-height: 1.65;
+    font-weight: 500;
+    line-height: 1.4;
+    max-width: 16ch;
+  }
+
+  .trust-sep {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .trust-strip {
+      gap: 0;
+    }
+
+    .trust-sep {
+      display: none;
+    }
+
+    .trust-metric {
+      min-width: 50%;
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-metric:nth-child(n+5) {
+      border-bottom: none;
+    }
+
+    /* Separator inside 2×2 grid */
+    .trust-metric:nth-child(odd) {
+      border-right: 1px solid var(--border);
+    }
   }
 </style>

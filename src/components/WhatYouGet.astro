@@ -50,7 +50,7 @@ const groups = [
 ];
 ---
 
-<section id="what-you-get" class="section section--surface">
+<section id="what-you-get" class="section">
   <div class="container">
     <div class="section-header">
       <h2>Что вы получаете на выходе</h2>
@@ -65,7 +65,7 @@ const groups = [
           <div class="deliverables-items">
             {items.map(({ title, text }) => (
               <div class="deliverables-item">
-                <span class="deliverables-dot" aria-hidden="true"></span>
+                <span class="deliverables-check" aria-hidden="true">✓</span>
                 <div>
                   <h3 class="deliverables-title">{title}</h3>
                   <p class="deliverables-text">{text}</p>
@@ -81,29 +81,28 @@ const groups = [
 </section>
 
 <style>
-  /* ── Deliverables board ── */
+  /* ── Deliverables board — 3 independent cards ── */
   .deliverables-board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
     align-items: start;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
   }
 
   .deliverables-group {
     display: flex;
     flex-direction: column;
-  }
-
-  .deliverables-group + .deliverables-group {
-    border-left: 1px solid var(--border);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
   }
 
   .deliverables-group-header {
     padding: var(--space-4) var(--space-5);
     border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
   }
 
   .deliverables-group-label {
@@ -136,14 +135,13 @@ const groups = [
     background: rgba(255, 255, 255, 0.025);
   }
 
-  .deliverables-dot {
+  .deliverables-check {
     flex-shrink: 0;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent-blue);
-    opacity: 0.65;
-    margin-top: 7px;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--accent-green);
+    margin-top: 1px;
+    line-height: 1.5;
   }
 
   .deliverables-title {
@@ -162,18 +160,21 @@ const groups = [
 
   @media (max-width: 1024px) {
     .deliverables-board {
-      align-items: start;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .deliverables-group:last-child {
+      grid-column: span 2;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     .deliverables-board {
       grid-template-columns: 1fr;
     }
 
-    .deliverables-group + .deliverables-group {
-      border-left: none;
-      border-top: 1px solid var(--border);
+    .deliverables-group:last-child {
+      grid-column: span 1;
     }
   }
 </style>

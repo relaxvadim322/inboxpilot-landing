@@ -41,6 +41,12 @@ h2 { font-size: var(--text-h2); }
 h3 { font-size: var(--text-xl); }
 h4 { font-size: var(--text-lg); }
 
+/* Balanced headlines — desktop only; on small screens long Russian words
+   can look worse with forced balance, so we scope it to ≥769px. */
+@media (min-width: 769px) {
+  h1, h2 { text-wrap: balance; }
+}
+
 p {
   color: var(--text-muted);
   overflow-wrap: anywhere;

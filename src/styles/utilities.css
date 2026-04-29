@@ -224,6 +224,34 @@
   background: var(--border);
 }
 
+/* ── Compact section (trust strips, auxiliary rows) ── */
+.section--compact {
+  padding-block: clamp(32px, 4vw, 48px);
+}
+
+/* ── Feature panel (surface-2 card with border) ── */
+.feature-panel {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  box-shadow: var(--shadow-card);
+}
+
+/* ── Two-column layout ── */
+.layout-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .layout-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Text helpers ── */
 .text-muted { color: var(--text-muted); }
 .text-green { color: var(--accent-green); }
